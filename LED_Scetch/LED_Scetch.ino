@@ -44,6 +44,7 @@ uint16_t rowcol( uint8_t row, uint8_t col)
   return i;
 }
 
+//itterate through the sorted LED Matrix from [0][0] to [height-1][width-1]
 void itterthroughleds(uint8_t red, uint8_t green, uint8_t blue, uint8_t wait)
 {   
     for(int row = 0; row < row_count; row++)
@@ -57,6 +58,7 @@ void itterthroughleds(uint8_t red, uint8_t green, uint8_t blue, uint8_t wait)
     }
 }
 
+//Animate a right arrow on Matrix
 void arrowright(uint8_t red, uint8_t green, uint8_t blue)
 {
   uint8_t thickness= 4;
