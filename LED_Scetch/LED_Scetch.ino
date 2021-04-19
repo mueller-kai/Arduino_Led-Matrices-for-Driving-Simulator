@@ -34,7 +34,7 @@ void loop() {
 }
 
 
-//Functions
+//___________________________________Functions_____________________________________
 
 //function that transform a row and colum input into a single integer in the array
 uint16_t rowcol( uint8_t row, uint8_t col)
