@@ -12,6 +12,10 @@
 //include functions
 uint16_t rowcol( uint8_t row, uint8_t col);
 void itterthroughleds(uint8_t red, uint8_t green, uint8_t blue, uint8_t wait);
+void arrowright(uint8_t red, uint8_t green, uint8_t blue);
+void arrowleft(uint8_t red, uint8_t green, uint8_t blue);
+
+
 
 //include other files
 #include "remap.h"
@@ -30,6 +34,7 @@ void setup() {
 }
 
 void loop() {
+  //arrowleft(0, 100, 100);
   arrowright(0, 100, 100);
 }
 
@@ -37,14 +42,14 @@ void loop() {
 //___________________________________Functions_____________________________________
 
 //function that transform a row and colum input into a single integer in the array
-uint16_t rowcol( uint8_t row, uint8_t col)
+uint16_t rowcol( int row, int col)
 {
   uint16_t i; 
   i = col_count * row + col;
   return i;
 }
 
-//itterate through the sorted LED Matrix from [0][0] to [height-1][width-1]
+//itterate through the sorted LED Matrix from [0][0] to [row_count-1][col_count-1]
 void itterthroughleds(uint8_t red, uint8_t green, uint8_t blue, uint8_t wait)
 {   
     for(int row = 0; row < row_count; row++)
@@ -62,8 +67,9 @@ void itterthroughleds(uint8_t red, uint8_t green, uint8_t blue, uint8_t wait)
 void arrowright(uint8_t red, uint8_t green, uint8_t blue)
 {
   uint8_t thickness= 4;
-  for(uint16_t animation = 0; animation< 96; animation ++)
+  for(uint8_t animation = 0; animation< col_count; animation ++)
   {
+    //print ann arrow point to the right on the left side of the matrix
     for (uint8_t row = 0; row < row_count; row++)
     {
         if(row <= 7)
@@ -78,11 +84,45 @@ void arrowright(uint8_t red, uint8_t green, uint8_t blue)
         {
           for (uint16_t col = 0; col <= thickness; col++)
           {
-              unsort_leds.setPixelColor((sort_leds[rowcol(row,row_count- row + col - 1 + animation)]), unsort_leds.Color(red, green, blue));
+              unsort_leds.setPixelColor((sort_leds[rowcol(row, row_count - row + col - 1 + animation)]), unsort_leds.Color(red, green, blue));
           }
         }
     }
-  unsort_leds.show();
-  unsort_leds.clear();
+    unsort_leds.show();
+    delay(0.1);
+    unsort_leds.clear();
   }
+}
+
+//Animate a left arrow on Matrix
+void arrowleft(uint8_t red, uint8_t green, uint8_t blue)
+{
+  uint8_t thickness = 4;
+
+  for(uint8_t animation = 0; animation <= col_count -1; animation++)
+  { 
+    //print an arrow pointing to the left, on the right side of the matrix
+    for(uint8_t row = 0; row < row_count; row++)
+    {
+      if(row <= 7)
+      {
+        for(uint8_t col = col_count-1; col >= col_count-1 - thickness; col--)
+        {
+          unsort_leds.setPixelColor((sort_leds[rowcol(row, col - row - animation)]), unsort_leds.Color(red, green, blue));
+        }
+      }
+      else
+      {
+        for(uint8_t col = col_count-1; col >= col_count-1 - thickness; col--)
+        {
+          unsort_leds.setPixelColor((sort_leds[rowcol(row, col - row_count + row + 1 - animation)]), unsort_leds.Color(red, green, blue));
+        }
+      }
+    }
+    unsort_leds.show();
+    delay(1); 
+    unsort_leds.clear();
+  //colsing to 8 animation loops
+  }
+  return;
 }
