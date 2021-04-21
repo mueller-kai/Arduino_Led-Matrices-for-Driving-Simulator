@@ -34,8 +34,9 @@ void setup() {
 }
 
 void loop() {
-  //arrowleft(0, 100, 100);
-  arrowright(0, 100, 100);
+  arrowleft(0, 100, 100);
+  //arrowright(0, 100, 100);
+  //itterthroughleds(100, 100, 0, 10);
 }
 
 
@@ -89,7 +90,7 @@ void arrowright(uint8_t red, uint8_t green, uint8_t blue)
         }
     }
     unsort_leds.show();
-    delay(0.1);
+    delay(10);
     unsort_leds.clear();
   }
 }
