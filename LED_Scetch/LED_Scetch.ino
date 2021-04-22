@@ -123,7 +123,6 @@ void arrowleft(uint8_t red, uint8_t green, uint8_t blue)
     unsort_leds.show();
     delay(1); 
     unsort_leds.clear();
-  //colsing to 8 animation loops
   }
   return;
 }
