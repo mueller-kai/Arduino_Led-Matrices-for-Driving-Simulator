@@ -28,6 +28,7 @@ uint8_t height_limiter(uint8_t input)
   return limiter;
 }
 
+
 //itterate through the sorted LED Matrix from [0][0] to [row_count-1][col_count-1]
 void itterthroughleds(uint8_t red, uint8_t green, uint8_t blue, uint8_t wait)
 {   
@@ -41,6 +42,7 @@ void itterthroughleds(uint8_t red, uint8_t green, uint8_t blue, uint8_t wait)
         }
     }
 }
+
 
 //arrow_right
 void arrow_right(uint8_t red, uint8_t green, uint8_t blue)
@@ -77,10 +79,9 @@ void arrow_right(uint8_t red, uint8_t green, uint8_t blue)
   }
 }
 
+
 //Animate a left arrow on Matrix
-
 //TO BE DONE
-
 void arrow_left(uint8_t red, uint8_t green, uint8_t blue, uint8_t thickness)
 {
   for(uint8_t animation = 0; animation <= col_count -1; animation++)
@@ -111,6 +112,7 @@ void arrow_left(uint8_t red, uint8_t green, uint8_t blue, uint8_t thickness)
     unsort_leds.clear();
   }
 }
+
 
 //animate arrow top right
 void arrow_topright(uint8_t red, uint8_t green, uint8_t blue,uint8_t thickness)
@@ -144,6 +146,7 @@ void arrow_topright(uint8_t red, uint8_t green, uint8_t blue,uint8_t thickness)
       unsort_leds.clear();
   }
 }
+
 
 //animate arrow pointing top left
 void arrow_topleft(uint8_t red, uint8_t green, uint8_t blue, uint8_t thickness)
@@ -180,6 +183,7 @@ void arrow_topleft(uint8_t red, uint8_t green, uint8_t blue, uint8_t thickness)
   }
 }
 
+
 //animate arrow pointing down right
 void arrow_downright(uint8_t red, uint8_t green, uint8_t blue,uint8_t thickness)
 {
@@ -212,6 +216,7 @@ void arrow_downright(uint8_t red, uint8_t green, uint8_t blue,uint8_t thickness)
       unsort_leds.clear();
   }
 }
+
 
 //animate arrow pointing down left
 void arrow_downleft(uint8_t red, uint8_t green, uint8_t blue,uint8_t thickness)
@@ -247,9 +252,10 @@ void arrow_downleft(uint8_t red, uint8_t green, uint8_t blue,uint8_t thickness)
   }
 }
 
-//draw an arrow strainght ahead
+
+//draw an arrow strainght down
 //TO BE DONE
-void arrow_ahead(uint8_t red, uint8_t green, uint8_t blue)
+void arrow_down(uint8_t red, uint8_t green, uint8_t blue, uint8_t thickness)
 {
   for(uint8_t row = 16; row < 32; row++)
   {
@@ -268,7 +274,6 @@ void arrow_ahead(uint8_t red, uint8_t green, uint8_t blue)
       unsort_leds.setPixelColor((sort_leds[rowcol(row, col)]), unsort_leds.Color(0, 0, 0)); 
     }
   }
-  
   for(uint8_t row = 16; row < 32; row++)
   {
     for(uint8_t col = 48; col  > 64 - row ; col--)
@@ -277,14 +282,82 @@ void arrow_ahead(uint8_t red, uint8_t green, uint8_t blue)
     }
   }
   
+  for(uint8_t row = 16; row < 32 - thickness; row++)
+  {
+    for(uint8_t col = row + thickness; col < row + thickness; col++)
+    {
+      unsort_leds.setPixelColor((sort_leds[rowcol(row, col)]), unsort_leds.Color(0, 0, 0));
+    }
+  }
+  for(uint8_t row = 16; row < 32 - thickness; row++)
+  {
+    for(uint8_t col = 48 - thickness; col > 64 - row; col--)
+    {
+      unsort_leds.setPixelColor((sort_leds[rowcol(row, col)]), unsort_leds.Color(0, 0, 0));
+    }
+  }
+   
   unsort_leds.show();
   delay(1);
   unsort_leds.clear();
 }
 
 
+//Draw an arrow straight ahead
+void arrow_ahead(uint8_t red, uint8_t green, uint8_t blue, uint8_t thickness)
+{
+  uint8_t height_arrow = 16;
+  uint8_t width_arrow = 32;
+  //draw box
+  for(uint8_t row = 16; row < 32; row++)
+  {
+    for(uint8_t col = 16; col < 48; col ++)
+    {
+       {
+       unsort_leds.setPixelColor((sort_leds[rowcol(row, col)]), unsort_leds.Color(red, green, blue)); 
+       }
+    }
+  }
+  //darken pixels
+  for(uint8_t row = 16; row < 32; row++)
+  {
+    for(uint8_t col = 16; col < width_arrow/ 2 -row; col++)
+    {
+      unsort_leds.setPixelColor((sort_leds[rowcol(row, col)]), unsort_leds.Color(0, 0, 0));
+    }
+  }
+  for(uint8_t row = 16; row < 32; row++)
+  {
+    for(uint8_t col = 48; col > width_arrow/ 2 + row; col--)
+    {
+      unsort_leds.setPixelColor((sort_leds[rowcol(row, col)]), unsort_leds.Color(0, 0, 0));
+    }
+  }
+  
+  for(uint8_t row= 16 + thickness; row < 32; row ++)
+  {
+    for(uint8_t col = width_arrow/2; col > col -row -thickness;col --)
+    {
+      unsort_leds.setPixelColor((sort_leds[rowcol(row, col)]), unsort_leds.Color(0, 0, 0));
+    }
+  }
+  for(uint8_t row = 16 + thickness; row < 32; row ++)
+  {
+    for(uint8_t col = width_arrow/2; col < col + row - thickness;col ++)
+    {
+      unsort_leds.setPixelColor((sort_leds[rowcol(row, col)]), unsort_leds.Color(0, 0, 0));
+    }
+  }
+  unsort_leds.show();
+  delay(1);
+  unsort_leds.clear();
+}
 
-//____________________OLD Arrow Dumping space ______________________
+
+//alternative for arrow up and down is the start the nested forloops with the columns and check weather col is more or less than half of the arrow
+
+
+//____________________OLD Arrows Dumping space ______________________
 
 /*
 //Animate a right arrow on Matrix
