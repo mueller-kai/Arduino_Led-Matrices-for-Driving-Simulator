@@ -32,12 +32,12 @@ void setup() {
 }
 
 void loop() {
-  //arrow_ahead(0, 100, 100);
-  arrow_downleft (0, 100, 100, 4);
-  arrow_downright(0, 100, 100, 4);
-  arrow_topleft(0, 100, 100, 4);
-  arrow_topright(0, 100, 100, 4);
-  arrow_right(0, 100, 100);
+  arrow_ahead(0, 100, 100, 6);
+  //arrow_downleft (0, 100, 100, 4);
+  //arrow_downright(0, 100, 100, 4);
+  //arrow_topleft(0, 100, 100, 4);
+  //arrow_topright(0, 100, 100, 4);
+  //arrow_right(0, 100, 100);
   //arrow_left(0, 100, 100, 4);
   //arrow_right(0, 100, 100, 4);
   //itterthroughleds(100, 100, 0, 1);
