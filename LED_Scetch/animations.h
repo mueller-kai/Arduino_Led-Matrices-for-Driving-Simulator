@@ -86,6 +86,9 @@ void arrow_right(uint8_t red, uint8_t green, uint8_t blue, uint8_t thickness)
 //Animate a left arrow on Matrix
 void arrow_left(uint8_t red, uint8_t green, uint8_t blue, uint8_t thickness)
 {
+  //The Animation will only count to 32, because if an instance is animated 32 columns to thr right is is exactly in the place of the next arrow.
+  //For example: The first arrow is not visible in the matrix because it is drawn in the buffer zone, but if it is animated 32 columns o the right it is exactly in the position of the second arrow.
+  //At this point all arrows (execpt the fourth) have reached the position of their right neighbour arrow, therefore the animation can be started again from 0.
   for(uint8_t animation = 0; animation < 32; animation++)
   {
     //draw 4 instances of an arrow
