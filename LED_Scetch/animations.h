@@ -45,21 +45,24 @@ void itterthroughleds(uint8_t red, uint8_t green, uint8_t blue, uint8_t wait)
 
 
 //arrow_right
-void arrow_right(uint8_t red, uint8_t green, uint8_t blue)
+void arrow_right(uint8_t red, uint8_t green, uint8_t blue, uint8_t thickness)
 {
-  uint8_t thickness= 4;
-  for(uint8_t animation = 0; animation< col_count; animation ++)
+  //The Animation will only count to 32, because if an instance is animated 32 columns to thr right is is exactly in the place of the next arrow.
+  //For example: The first arrow is not visible in the matrix because it is drawn in the buffer zone, but if it is animated 32 columns o the right it is exactly in the position of the second arrow.
+  //At this point all arrows (execpt the fourth) have reached the position of their right neighbour arrow, therefore the animation can be started again from 0.
+  for(uint8_t animation = 0; animation < 32; animation ++)
   {
     //drawing 4 instances of the arrow
     for(uint8_t instance = 0; instance < 4; instance++)
     {
       //print ann arrow point to the right on the left side of the matrix
-      for (uint8_t row = 16; row < row_count; row++)
+      for (uint8_t row = matrixbuffer; row < row_count; row++)
       {
           if(row <= 23)
           {
             for (int col = 0 ; col <= thickness; col++)
-            {   
+            {
+             
                 unsort_leds.setPixelColor((sort_leds[rowcol(row,col+ row - matrixbuffer + animation + (instance * 32))]), unsort_leds.Color(red, green, blue));
             }
           }
@@ -81,30 +84,30 @@ void arrow_right(uint8_t red, uint8_t green, uint8_t blue)
 
 
 //Animate a left arrow on Matrix
-//TO BE DONE
 void arrow_left(uint8_t red, uint8_t green, uint8_t blue, uint8_t thickness)
 {
-  for(uint8_t animation = 0; animation <= col_count -1; animation++)
+  for(uint8_t animation = 0; animation < 32; animation++)
   {
     //draw 4 instances of an arrow
-    for(uint8_t instance_of_arrow = 0; instance_of_arrow < 4; instance_of_arrow++)
+    for(uint8_t instance = 0; instance < 4; instance++)
     
       //print an arrow pointing to the left, on the right side of the matrix
-      for(uint8_t row = 16; row < row_count - matrixbuffer; row++)
+      for(uint8_t row = matrixbuffer; row < row_count - matrixbuffer; row++)
       {
         if(row <= 23)
         {
-          for(uint8_t col = col_count-1 - (instance_of_arrow * 24); col >= col - thickness; col--)
+          //TO DO why does a thickness of 5 lead to a thickness of 4 
+          for(uint8_t col = col_count-1 - (row - matrixbuffer); col > col_count - (row - matrixbuffer) - thickness -1; col--)
           {
-            unsort_leds.setPixelColor((sort_leds[rowcol(row, col - row + matrixbuffer  - animation)]), unsort_leds.Color(red, green, blue));
-          }
+            unsort_leds.setPixelColor((sort_leds[rowcol(row, col - animation - (instance * 32))]), unsort_leds.Color(red, green, blue));
+          }//col - row + matrixbuffer  - animation - (instance_of_arrow * 32)
         }
         else
         {
-          for(uint8_t col = col_count-1 - (instance_of_arrow * 24); col >= col - thickness; col--)
+          for(uint8_t col = col_count - (32 - row); col > col_count - (32 - row) - thickness -1 ; col--)
           {
-            unsort_leds.setPixelColor((sort_leds[rowcol(row, col - row_count - matrixbuffer + row + 1 - animation)]), unsort_leds.Color(red, green, blue));
-          }
+            unsort_leds.setPixelColor((sort_leds[rowcol(row, col - animation - (instance * 32))]), unsort_leds.Color(red, green, blue));
+          }//- row_count - matrixbuffer + row + 1 - animation - (instance_of_arrow * 32)
         }
       }
     unsort_leds.show();
