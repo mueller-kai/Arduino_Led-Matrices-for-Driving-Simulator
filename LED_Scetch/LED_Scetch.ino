@@ -32,6 +32,7 @@ void setup() {
 }
 
 void loop() {
+<<<<<<< HEAD
   //arrow_ahead(0, 100, 100, 6);
   //arrow_downleft (0, 100, 100, 4);
   //arrow_downright(0, 100, 100, 4);
@@ -41,4 +42,32 @@ void loop() {
   arrow_left(0, 100, 100, 4);
   //arrow_right(0, 100, 100, 4);
   //itterthroughleds(100, 100, 0, 1);
+=======
+
+  arrow_ahead(0, 255, 255, 5, 1);
+  arrow_down(0, 255, 255, 5, 1);
+  arrow_downleft (0, 255, 255, 4, 1);
+  arrow_downright(255, 255, 0, 4, 1);
+  arrow_topleft(255, 0, 255, 4, 1);
+  arrow_topright(0, 255, 255, 4, 1);  
+
+  arrow_right(0, 0, 255, 4, 1);
+  arrow_right(255, 0, 0, 6, 1);
+  arrow_right(0, 0, 255, 10, 1);
+  
+  arrow_left(255, 255, 0, 4, 1);
+  arrow_left(255, 0, 255, 8, 1);
+  arrow_left(0, 255, 255, 6, 2);
+  arrow_left(255, 0, 255, 6, 2);
+  arrow_left(255, 255, 0, 6, 2);
+  arrow_left(255, 0, 255, 6, 2);
+  arrow_left(100, 100, 50, 6, 2);
+    
+  arrow_ahead(10, 10, 10, 5, 1);
+  arrow_ahead(0, 255, 255, 10, 2);
+  delay(10000);
+ 
+  //itterthroughleds(100, 100, 0, 1);
+
+>>>>>>> a3bb365870d1b6a00bdc4ad94eda338aa99f40af
 }
