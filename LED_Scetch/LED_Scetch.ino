@@ -60,13 +60,12 @@ unsort_leds.begin();
 void loop() {
 
 //This code loops as long as arduino is active
-if(CAN_MSGAVAIL == CAN.checkReceive())        //check if data coming
+if(CAN_MSGAVAIL == CAN.checkReceive())//check if data coming
 {
-    CAN.readMsgBuf(&len, buf);    //read data,  len: data length, buf: data buffer the Information in the message will be written to buf 
-    canID = CAN.getCanId();       //getting the ID of the incoming message
+    CAN.readMsgBuf(&len, buf);//read data,  len: data length, buf: data buffer the Information in the message will be written to buf 
+    canID = CAN.getCanId(); //getting the ID of the incoming message
     
-    //Checking for ID, What ID we need to check for is declared in the Code for the
-    //Navigation System
+    //Checking for ID, What ID we need to check for is declared in the Code for the Navigation System
     if (canID == 0xF1 )
     {
       //Print some Information about the msg
@@ -90,8 +89,6 @@ if(CAN_MSGAVAIL == CAN.checkReceive())        //check if data coming
         case 8: arrow_downright(0, 255, 255, 4, 1); break;
         default: Serial.print("Mesage did not match any of the cases"); break;
       }
-      
-      
     }
   }
 
