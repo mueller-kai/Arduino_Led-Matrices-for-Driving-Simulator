@@ -5,6 +5,7 @@
 #include "remap.h"
 
 //define the Neopixel array of LEDs that are connected to PIN 6
+//this needs to be defined in animations.h otherwise IDE will trough an Error
 Adafruit_NeoPixel unsort_leds = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
 
@@ -363,8 +364,31 @@ void arrow_ahead(uint8_t red, uint8_t green, uint8_t blue, uint8_t thickness, ui
      }
 }
 
-//alternative for arrow up and down is the start the nested forloops with the columns and check weather col is more or less than half of the arrow
+void lights_show()
+{
+  arrow_ahead(0, 255, 255, 5, 1);
+  arrow_down(0, 255, 255, 5, 1);
+  arrow_downleft (0, 255, 255, 4, 1);
+  arrow_downright(255, 255, 0, 4, 1);
+  arrow_topleft(255, 0, 255, 4, 1);
+  arrow_topright(0, 255, 255, 4, 1);  
 
+  arrow_right(0, 0, 255, 4, 1);
+  arrow_right(255, 0, 0, 6, 1);
+  arrow_right(0, 0, 255, 10, 1);
+  
+  arrow_left(255, 255, 0, 4, 1);
+  arrow_left(255, 0, 255, 8, 1);
+  arrow_left(0, 255, 255, 6, 2);
+  arrow_left(255, 0, 255, 6, 2);
+  arrow_left(255, 255, 0, 6, 2);
+  arrow_left(255, 0, 255, 6, 2);
+  arrow_left(100, 100, 50, 6, 2);
+    
+  arrow_ahead(10, 10, 10, 5, 1);
+  arrow_ahead(0, 255, 255, 10, 2);
+  delay(10000);
+}
 
 //____________________OLD Arrows Dumping space ______________________
 
