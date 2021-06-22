@@ -66,7 +66,7 @@ if(CAN_MSGAVAIL == CAN.checkReceive())//check if data coming
     canID = CAN.getCanId(); //getting the ID of the incoming message
     
     //Checking for ID, What ID we need to check for is declared in the Code for the Navigation System
-    if (canID == 0xF1 )
+    if (canID == 0xAB)
     {
       //Print some Information about the msg
       Serial.print("ID is: ");
