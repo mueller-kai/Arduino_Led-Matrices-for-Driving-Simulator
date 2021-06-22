@@ -1,5 +1,5 @@
-#ifndef animations.h
-#define animations.h
+#ifndef animations
+#define animations
 
 //include other files
 #include "remap.h"
@@ -10,7 +10,7 @@ Adafruit_NeoPixel unsort_leds = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_
 
 
 //_____________________________functions___________________________
-// __________these functions animate Arrows on the matrix__________
+//__________these functions animate Objects on the matrix__________
 
 
 
@@ -67,7 +67,6 @@ void arrow_right(uint8_t red, uint8_t green, uint8_t blue, uint8_t thickness, ui
                 unsort_leds.setPixelColor((sort_leds[rowcol(row,col+ row - matrixbuffer + animation + (instance * 32))]), unsort_leds.Color(red, green, blue));
             }
           }
-          
           else
           {
             for (uint16_t col = 0 ; col <= thickness; col++)

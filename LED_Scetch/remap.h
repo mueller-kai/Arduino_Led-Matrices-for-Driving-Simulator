@@ -1,9 +1,5 @@
-#ifndef remap.h 
-#define remap.h 
-
-
-//create sorted array
-//uint8_t sort_leds[1536];
+#ifndef remap
+#define remap
 
 //This array ist sorted. Meaning that the first element (1344) corresponds to the [0][0] led in the sorted Leds Matrix.
 //the elements filled with a 2000 represent a buffer zone to ensure smooth animations.
