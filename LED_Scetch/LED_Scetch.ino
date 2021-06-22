@@ -32,13 +32,15 @@ void setup() {
 //Initialise LED Array
 unsort_leds.begin();
 
+/*
 // This code sets up the connection between Arduino and CAN-BUS
 //You can implement it, as soon as the Navigation system starts sending Data
-
+//The Code has been tested sucessfully
 Serial.begin(115200);//to communicate with Serial monitor
 //tries to initialize, if failed --> it will loop here for ever
 START_INIT:
-    if(CAN_OK == CAN.begin(CAN_1000KBPS)) //setting CAN baud rate to 500Kbps
+    //init might take a few tries you can mointor it by clicking the magnifier icon on the top left (gets you to the serial monitor)
+    if(CAN_OK == CAN.begin(CAN_500KBPS))//setting CAN baud rate to 500Kbps
     {
         Serial.println("CAN BUS Shield init ok!");
     }
@@ -49,6 +51,7 @@ START_INIT:
         delay(1);
         goto START_INIT;
     }
+*/
 }
 
 void loop() {
@@ -57,7 +60,7 @@ void loop() {
 lights_show();
 
 //The following Code can bee implemented as soon as the Navigationssystem sends Data on the CAN-Bus
-
+/*
 if(CAN_MSGAVAIL == CAN.checkReceive())//check if data coming
 {
     CAN.readMsgBuf(&len, buf);//read data,  len: data length, buf: data buffer the Information in the message will be written to buf 
@@ -91,5 +94,5 @@ if(CAN_MSGAVAIL == CAN.checkReceive())//check if data coming
       }
     }
   }
-
+*/
 }
