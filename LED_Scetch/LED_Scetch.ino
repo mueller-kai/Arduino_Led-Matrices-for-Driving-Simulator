@@ -11,6 +11,7 @@ unsigned char buf[8]; //create buffer space (8 bytes big) to later asigned to th
 unsigned int canID;  //create space for ID of CAN msg
 unsigned char incoming_msg; //ceate space for incoming msg dont get confused by char  type. Char is just used to only create 8 bits of space. The space will later be used by an int!
 
+//include Adafruit Library
 #include <Adafruit_NeoPixel.h>
 #ifdef __AVR__
   #include <avr/power.h>
@@ -32,10 +33,10 @@ void setup() {
 //Initialise LED Array
 unsort_leds.begin();
 
-/*
+
 // This code sets up the connection between Arduino and CAN-BUS
-//You can implement it, as soon as the Navigation system starts sending Data
-//The Code has been tested sucessfully
+//It has been tested successfully and you can implement it, as soon as the Navigation system starts sending Data on the bus
+/*
 Serial.begin(115200);//to communicate with Serial monitor
 //tries to initialize, if failed --> it will loop here for ever
 START_INIT:
@@ -56,8 +57,13 @@ START_INIT:
 
 void loop() {
 
-//call a light show to impress everyone!
+//call a light show to impress everyone! it doesnt need any input
 lights_show();
+
+//call a animation
+//Parameters for functions from left to right:
+//Red, Green, Blue, thickness (in leds 5 = 5 leds thickness), speed (values from 1-3 are recommended for smooth animation)
+arrow_ahead(0, 255, 255, 5, 1);
 
 //The following Code can bee implemented as soon as the Navigationssystem sends Data on the CAN-Bus
 /*
