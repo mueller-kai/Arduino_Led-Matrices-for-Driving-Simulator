@@ -22,14 +22,6 @@ uint16_t rowcol(int row, int col)
   return i;
 }
 
-uint8_t height_limiter(uint8_t input)
-{
-  uint8_t limiter;
-  limiter = (16 - input)/ 2;
-  return limiter;
-}
-
-
 //itterate through the sorted LED Matrix from [0][0] to [row_count-1][col_count-1]
 void itterthroughleds(uint8_t red, uint8_t green, uint8_t blue, uint8_t wait)
 {   
