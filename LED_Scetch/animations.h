@@ -53,14 +53,15 @@ void arrow_right(uint8_t red, uint8_t green, uint8_t blue, uint8_t thickness, ui
       {
           if(row <= 23)
           {
+            //draw top side of the arrow
             for (int col = 0 ; col <= thickness; col++)
             {
-             
                 unsort_leds.setPixelColor((sort_leds[rowcol(row,col+ row - matrixbuffer + animation + (instance * 32))]), unsort_leds.Color(red, green, blue));
             }
           }
           else
           {
+             //draw bottom side of the arrow
             for (uint16_t col = 0 ; col <= thickness; col++)
             {
                 unsort_leds.setPixelColor((sort_leds[rowcol(row, row_count - row - matrixbuffer + col - 1 + animation + (instance * 32))]), unsort_leds.Color(red, green, blue));
@@ -91,18 +92,19 @@ void arrow_left(uint8_t red, uint8_t green, uint8_t blue, uint8_t thickness, uin
       {
         if(row <= 23)
         {
-          //TO DO why does a thickness of 5 lead to a thickness of 4 
+          //draw to side of the arrow
           for(uint8_t col = col_count-1 - (row - matrixbuffer); col > col_count - (row - matrixbuffer) - thickness -1; col--)
           {
             unsort_leds.setPixelColor((sort_leds[rowcol(row, col - animation - (instance * 32))]), unsort_leds.Color(red, green, blue));
-          }//col - row + matrixbuffer  - animation - (instance_of_arrow * 32)
+          }
         }
         else
         {
+          //draw bottom side of the arrow
           for(uint8_t col = col_count - (32 - row); col > col_count - (32 - row) - thickness -1 ; col--)
           {
             unsort_leds.setPixelColor((sort_leds[rowcol(row, col - animation - (instance * 32) + 1)]), unsort_leds.Color(red, green, blue));//+1 to ensure symtery
-          }//- row_count - matrixbuffer + row + 1 - animation - (instance_of_arrow * 32)
+          }
         }
       }
     unsort_leds.show();
@@ -327,6 +329,7 @@ void arrow_ahead(uint8_t red, uint8_t green, uint8_t blue, uint8_t thickness, ui
               //darken pixels to create a triangle
               for(uint8_t row = 32; row < row_count; row++)
               {
+                //rightside 
                 for(uint8_t col = matrixbuffer; col <  arrow_width + (arrow_width - row) - 1; col++)
                 {
                   unsort_leds.setPixelColor((sort_leds[rowcol(row - animation, col+ (instances*32))]), unsort_leds.Color(0, 0, 0));
@@ -340,7 +343,7 @@ void arrow_ahead(uint8_t red, uint8_t green, uint8_t blue, uint8_t thickness, ui
                 }
               }
 
-            //darken pixels to create an arrow
+            //darken pixels further to create an arrow
             for(uint8_t row = row_count - 1; row > row_count - 1 - arrow_height + thickness; row--)
             { 
               for(uint8_t col = 16 + thickness + (row_count - 1 - row) ; col < (arrow_width + matrixbuffer) - thickness - (row_count - 1 - row); col++)
