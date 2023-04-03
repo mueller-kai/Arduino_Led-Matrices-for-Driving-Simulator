@@ -4,6 +4,8 @@ in other words:
 Navigation message: Turn right
 Visualization: Animate arrows right
 
+Animation can be adjusted based on how far the turn is away form the current position of the car.
+
 https://user-images.githubusercontent.com/72653744/123142842-2c481a00-d45a-11eb-918d-467cd26b0e3d.mp4
 
 The Code runs on a Arduino 4.0 Teensy. It coordinates 1536 LEDs!
