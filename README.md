@@ -1,4 +1,4 @@
-This code visualizes arrows on a LED Matrix. Navigation messages are read from the CAN-Bus and the corresponding Arrow visualization is shown. 
+This code visualizes arrows on a LED Matrix. Navigation messages are read from the CAN-Bus and the corresponding arrow visualization is shown. 
 
 in other words: 
 Navigation message: Turn right
