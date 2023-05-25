@@ -1,4 +1,5 @@
 This code visualizes arrows on a LED Matrix that is installed in the driving simulator of the Reutlingen University of applied Science. Navigation messages are read from the CAN-Bus and the corresponding arrow visualization is shown. 
+The mindset of the project is to imagine future developments in the automotive industry.
 
 in other words: 
 Navigation message: Turn right
